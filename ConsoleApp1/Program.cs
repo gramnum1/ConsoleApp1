@@ -17,13 +17,19 @@ namespace ConsoleApp1
 
 
 
-
-                //var albums = context.Albums;
-                context.Albums.Add(new Album() { Price = 9.99m, Title = "wish" });
-                context.SaveChanges();
                 var count = context.Albums.Count();
-                Console.WriteLine(count);
+                Console.WriteLine("Albums Count Before Insert: " + count);
+                
+                context.Albums.Add(new Album() { Price = 9.99m, Title = "Another" });
+                context.SaveChanges();
+                count = context.Albums.Count();
+                Console.WriteLine("Albums Count After Insert: " + count);
+
+                var albums = context.Albums.Where(o => o.Title.Contains("w"));
+                count = albums.Count();
+                Console.WriteLine("Albums With W: " + count);
                 Console.ReadLine();
+
             }
         }
     }
